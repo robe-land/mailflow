@@ -102,7 +102,7 @@ Bash. Use a directory where you want the clone.
 1. Clone the private repository and verify prerequisites:
 
    ```fish
-   git clone https://github.com/michael-robeson/mailflow.git
+   git clone https://github.com/robe-land/robe-app-mailflow.git
    cd mailflow
    docker --version
    docker compose version

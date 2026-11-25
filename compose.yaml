@@ -1,3 +1,5 @@
+name: mailflow
+
 services:
   postgres:
     image: postgres:17.11-alpine
