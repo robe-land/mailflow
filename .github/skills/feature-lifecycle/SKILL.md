@@ -14,16 +14,17 @@ Git operations.
 When the user authorizes completing the full feature lifecycle, that
 authorization covers routine, task-scoped commits, publishing the feature
 branch, creating the PR, monitoring required CI, merging once all required CI,
-review, approval, and branch-protection conditions are satisfied, and normal
-post-merge cleanup and synchronization. Stage and commit only files in the
-authorized task scope. Do not request redundant confirmation for each routine
-Git or GitHub operation. Stop for user intervention only when a required
-condition cannot be satisfied, a review issue or merge conflict remains
-unresolved, or an administrator bypass needs authorization not already
-granted. Full-lifecycle authorization alone does not authorize an
-administrator bypass; retain the per-PR authorization requirement below. An
-explicit instruction to stop at a particular lifecycle boundary takes
-precedence over broader lifecycle authorization.
+branch, creating the PR, monitoring required CI, merging after explicit owner
+approval of the exact candidate and successful required CI, and normal
+post-merge cleanup and synchronization. This is a single-developer policy;
+it does not require an independent GitHub review. Stage and commit only files
+in the authorized task scope. Do not request redundant confirmation for each
+routine Git or GitHub operation. Stop for user intervention when an unresolved
+review conversation, safety issue, or merge conflict remains, or when an
+active GitHub protection prevents integration. Never change or bypass a
+server-side protection to satisfy the local policy. An explicit instruction
+to stop at a particular lifecycle boundary takes precedence over broader
+lifecycle authorization.
 
 ## Begin from synchronized develop
 
@@ -64,18 +65,16 @@ precedence over broader lifecycle authorization.
 
 1. Wait for every required CI check to complete successfully (for example,
    `gh pr checks <number> --watch`). Review the PR diff and scope, merge
-   eligibility, review decision, and all review conversations. Do not merge
-   while a required conversation or safety concern is unresolved, while checks
-   are failing, or while conflicts remain.
-2. One approving review remains required for ordinary contributors.
-   Repository administrators acting as solo maintainers may bypass the review
-   requirement, but only after all required CI checks pass. An agent may use
-   that administrator bypass only when the user explicitly authorizes that
-   particular PR merge. That authorization does not carry over to future PRs.
-   Never use bypass to circumvent failed CI, merge conflicts, or unresolved
-   safety concerns.
-3. Merge only after confirming the PR is eligible and approved under the
-   applicable policy. Recent Mailflow PRs use merge commits; use
+   eligibility, and all review conversations. Do not merge while a required
+   conversation or safety concern is unresolved, while checks are failing, or
+   while conflicts remain.
+2. Obtain explicit owner approval for the exact candidate and verify all
+   required CI checks. The local single-developer policy does not override
+   GitHub branch protections or rulesets. If server-side policy requires an
+   independent approving review, report the exact requirement and stop; do not
+   request an independent reviewer, change the setting, or bypass it.
+3. Merge only after confirming owner approval, successful required CI, and
+   GitHub merge eligibility. Recent Mailflow PRs use merge commits; use
    `gh pr merge <number> --merge` unless the repository's established strategy
    changes. Merge into `develop`, never automatically into `master`.
 4. Confirm the PR reports a successful merged state before starting cleanup.

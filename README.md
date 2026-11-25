@@ -7,6 +7,13 @@ clutter, surface important messages, organize email, and recommend cleanup
 while keeping the user in control. It uses n8n to orchestrate workflows. Gmail
 is the first integration; supporting other email providers is a future goal.
 
+> Maintained by [Robe Land](https://github.com/robe-land).
+>
+> Original work is licensed under [LICENSE](LICENSE). Third-party
+> materials retain their applicable licenses and copyright notices; see
+> the notices accompanying those materials and the repository's
+> third-party attribution index, where applicable.
+
 ## The problem we're solving
 
 Newsletters, promotions, and notifications can bury important messages.
